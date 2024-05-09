@@ -140,7 +140,7 @@ FROM	base AS full
 # Copy patent-encumbered codecs to image
 #
 
-COPY	sub/*/module $DOCKER_DL_DIR/
+#COPY	sub/*/module $DOCKER_DL_DIR/
 
 #
 # Install packages supporting audio
@@ -177,3 +177,40 @@ RUN	apk --no-cache --update add \
 	asterisk-dev \
 	asterisk-sounds-moh \
 	man-pages
+
+#
+#
+# target: arm
+#
+# all asterisk packages with arm compatible codecs
+#
+#
+
+FROM	xtra AS arm
+
+#
+# Install all asterisk packages with arm compatible codecs
+#
+
+RUN	apk --no-cache --update --virtual .build-deps add \
+	autoconf \
+	automake \
+	build-base \
+	cmake \
+	git \
+	libtool \
+	&& cd /tmp \
+	&& git clone https://github.com/BelledonneCommunications/bcg729.git \
+	&& cd bcg729 \
+	&& cmake . \
+	&& make \
+	&& make install \
+	&& cd /tmp \
+	&& git clone https://github.com/arkadijs/asterisk-g72x.git \
+	&& cd asterisk-g72x \
+	&& ./autogen.sh \
+	&& ./configure --with-bcg729 \
+	&& make \
+	&& make install \
+	&& apk del .build-deps \
+	&& rm -rf /tmp/* \
