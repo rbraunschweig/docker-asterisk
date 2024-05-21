@@ -9,7 +9,7 @@ BLD_ARG  ?= --build-arg DIST=alpine --build-arg REL=3.19 --build-arg PHP_VER=php
 BLD_REPO ?= mlan/asterisk
 BLD_VER  ?= latest
 BLD_TGT  ?= full
-BLD_TGTS ?= mini base full xtra
+BLD_TGTS ?= mini base full xtra arm
 BLD_CMT  ?= HEAD
 BLD_CVER ?= ast200
 BLD_DNLD ?= curl -o

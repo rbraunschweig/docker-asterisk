@@ -176,6 +176,7 @@ RUN	apk --no-cache --update add \
 	asterisk-dbg \
 	asterisk-dev \
 	asterisk-sounds-moh \
+	asterisk-opus \
 	man-pages
 
 #
@@ -213,4 +214,4 @@ RUN	apk --no-cache --update --virtual .build-deps add \
 	&& make \
 	&& make install \
 	&& apk del .build-deps \
-	&& rm -rf /tmp/* \
+	&& rm -rf /tmp/*
