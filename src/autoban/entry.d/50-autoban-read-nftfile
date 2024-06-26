@@ -10,7 +10,7 @@
 # The templates are in /usr/share/nftables and the actual state file is kept
 # in /etc/nftables.d.
 #
-source docker-common.sh
+. docker-common.sh
 
 DOCKER_NFT_DIR=${DOCKER_NFT_DIR-/etc/nftables.d}
 DOCKER_SEED_NFT_DIR=${DOCKER_SEED_NFT_DIR-/usr/share/nftables}
